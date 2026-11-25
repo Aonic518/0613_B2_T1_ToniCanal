@@ -1,6 +1,9 @@
 <?php
 namespace App\Models;
 
+/**
+ * Representa una revista i emmagatzema el número de l’edició.
+ */
 class Revista extends Material
 {
     private int $numeroEdicio;

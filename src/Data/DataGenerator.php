@@ -7,6 +7,9 @@ use App\Models\Revista;
 use App\Models\DVD;
 use App\Models\Usuari;
 
+/**
+ * Genera les dades inicials de prova i crea una biblioteca amb materials, usuaris, préstecs i reserves.
+ */
 class DataGenerator
 {
     public static function crear(): Biblioteca

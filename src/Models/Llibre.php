@@ -3,6 +3,9 @@ namespace App\Models;
 
 use App\Interfaces\Reservable;
 
+/**
+ * Representa un llibre de la biblioteca i permet gestionar-ne les dades i les reserves.
+ */
 class Llibre extends Material implements Reservable
 {
     private int $numeroPagines;

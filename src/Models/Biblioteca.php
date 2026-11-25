@@ -7,6 +7,9 @@ use App\Exceptions\MaterialNoDisponibleException;
 use App\Exceptions\MaterialNoPrestatException;
 use App\Exceptions\UsuariNoTrobatException;
 
+/**
+ * Gestiona els materials, els usuaris, els préstecs, les reserves i les estadístiques de la biblioteca.
+ */
 class Biblioteca
 {
     private array $materials = [];

@@ -1,6 +1,9 @@
 <?php
 namespace App\Exceptions;
 
+/**
+ * Excepció que s’utilitza quan un material no està disponible per prestar-lo o reservar-lo.
+ */
 class MaterialNoDisponibleException extends \Exception
 {
     private int $materialId;

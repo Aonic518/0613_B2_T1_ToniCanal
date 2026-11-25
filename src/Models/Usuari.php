@@ -3,6 +3,9 @@ namespace App\Models;
 
 use App\Exceptions\EmailInvalidException;
 
+/**
+ * Representa un usuari de la biblioteca i gestiona les seves dades, préstecs i notificacions.
+ */
 class Usuari
 {
     private array $materialsPrestats = [];

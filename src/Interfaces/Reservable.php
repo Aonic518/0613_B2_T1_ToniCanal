@@ -2,6 +2,9 @@
 
 namespace App\Interfaces;
 
+/**
+ * Defineix els mètodes que ha de tenir qualsevol material que es pugui reservar.
+ */
 interface Reservable
 {
     public function reservar(string $nomUsuari): bool;

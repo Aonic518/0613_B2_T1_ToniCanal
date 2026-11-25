@@ -3,6 +3,9 @@ namespace App\Models;
 
 use App\Traits\Auditoria;
 
+/**
+ * Classe abstracta que defineix les dades i operacions comunes de tots els materials de la biblioteca.
+ */
 abstract class Material
 {
     use Auditoria;

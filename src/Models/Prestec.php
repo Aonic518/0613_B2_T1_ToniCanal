@@ -1,6 +1,9 @@
 <?php
 namespace App\Models;
 
+/**
+ * Representa un préstec i controla les dates, els retards i les multes associades.
+ */
 class Prestec
 {
     private \DateTime $dataPrestec;

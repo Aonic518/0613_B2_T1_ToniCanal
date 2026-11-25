@@ -2,6 +2,9 @@
 
 namespace App\Traits;
 
+/**
+ * Afegeix als materials la funcionalitat per registrar i consultar el seu historial d’accions.
+ */
 trait Auditoria
 {
     private array $historial = [];

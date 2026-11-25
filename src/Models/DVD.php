@@ -3,6 +3,9 @@ namespace App\Models;
 
 use App\Interfaces\Reservable;
 
+/**
+ * Representa un DVD, incloent-hi la durada i la possibilitat de reservar-lo.
+ */
 class DVD extends Material implements Reservable
 {
     private int $duracio;
