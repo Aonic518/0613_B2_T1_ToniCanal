@@ -76,8 +76,8 @@ class DataGenerator
             new Usuari(4, "Pau Vidal", "pau@mail.com")
         );
 
-        // Préstec vençut: fa 25 dies.
-        $dataAntiga = new \DateTime("-25 days");
+        // Préstec vençut: fa 21 dies.
+        $dataAntiga = new \DateTime("-21 days");
         $biblioteca->prestarMaterial(1, 1, $dataAntiga);
 
         // Segon préstec actiu.
