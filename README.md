@@ -1,84 +1,158 @@
 # Biblioteca Digital
 
-Projecte desenvolupat en PHP orientat a objectes per gestionar una biblioteca digital. Permet administrar materials, usuaris, préstecs i reserves mitjançant una aplicació web.
+Aplicació web desenvolupada amb **PHP 8 i programació orientada a objectes** per gestionar una biblioteca digital. Permet administrar llibres, revistes, DVD, usuaris, préstecs i reserves, així com consultar estadístiques i l'historial d'accions.
 
-## Requisits
+## Requisits previs
+
+Per executar el projecte cal tenir instal·lat:
 
 - PHP 8.0 o superior.
 - Composer.
 - Un navegador web.
 
-## Instal·lació i execució
+## Instal·lació
 
-1. Descarregar o clonar el projecte.
-2. Obrir un terminal a la carpeta principal del projecte.
-3. Instal·lar les dependències i generar l'autoload amb Composer:
+1. Descarregar o clonar aquest repositori:
+
+```bash
+git clone https://github.com/Aonic518/0613_B2_T1_ToniCanal.git
+```
+
+2. Entrar a la carpeta del projecte:
+
+```bash
+cd 0613_B2_T1_ToniCanal
+```
+
+3. Instal·lar les dependències i generar l'autoload de Composer:
 
 ```bash
 composer install
-composer dump-autoload
 ```
 
-4. Iniciar el servidor de desenvolupament de PHP:
+## Execució
+
+Des de la carpeta principal del projecte, executar:
 
 ```bash
 php -S localhost:8000
 ```
 
-5. Obrir el navegador i accedir a:
+Obrir el navegador i accedir a:
 
 ```text
 http://localhost:8000
 ```
 
-## Funcionalitats
+Per aturar el servidor, prémer `Ctrl + C` al terminal.
 
-L'aplicació permet:
+## URLs i navegació
 
-- Consultar i cercar llibres, revistes i DVD.
-- Veure la informació detallada de cada material.
-- Gestionar els usuaris de la biblioteca.
-- Realitzar i retornar préstecs.
-- Reservar materials disponibles.
-- Consultar els préstecs actius i les reserves.
-- Consultar estadístiques de la biblioteca.
-- Consultar l'historial d'accions.
+Totes les pàgines es gestionen des de `index.php`, que actua com a punt d'entrada i encaminador de l'aplicació.
 
-També incorpora demostracions de conceptes de programació orientada a objectes, com ara els mètodes màgics, la serialització, les excepcions personalitzades i l'autoload de Composer.
+| URL | Descripció |
+|---|---|
+| `http://localhost:8000/` | Pàgina inicial amb un resum de la biblioteca. |
+| `http://localhost:8000/index.php?page=materials` | Mostra tots els materials i permet filtrar-los per tipus. |
+| `http://localhost:8000/index.php?page=material&id=3` | Mostra la fitxa detallada d'un material. Es pot canviar l'ID. |
+| `http://localhost:8000/index.php?page=usuaris` | Mostra el llistat d'usuaris. |
+| `http://localhost:8000/index.php?page=usuari&id=1` | Mostra la informació i els préstecs d'un usuari. Es pot canviar l'ID. |
+| `http://localhost:8000/index.php?page=prestecs` | Mostra els préstecs de la biblioteca. |
+| `http://localhost:8000/index.php?page=reserves` | Mostra els materials reservats. |
+| `http://localhost:8000/index.php?page=estadistiques` | Mostra les estadístiques de la biblioteca. |
+| `http://localhost:8000/index.php?page=auditoria` | Mostra l'historial d'accions dels materials. |
+| `http://localhost:8000/index.php?page=demo_magic` | Demostració dels mètodes màgics de PHP. |
+| `http://localhost:8000/index.php?page=demo_serialization` | Demostració de la serialització i deserialització d'objectes. |
+| `http://localhost:8000/index.php?page=demo_exceptions` | Demostració de les excepcions personalitzades. |
+| `http://localhost:8000/index.php?page=demo_autoload` | Demostració de l'autoload de Composer. |
+| `http://localhost:8000/index.php?page=reset` | Reinicia la sessió i genera de nou les dades inicials. |
+
+Les operacions de préstec, retorn i reserva es realitzen mitjançant els formularis de les pàgines corresponents.
+
+## Funcionalitats principals
+
+### Gestió de materials
+
+- Gestió de llibres, revistes i DVD.
+- Consulta de la informació detallada de cada material.
+- Cerca i filtratge de materials.
+- Control de la disponibilitat.
+- Càlcul de multes segons el tipus de material i els dies de retard.
+
+### Gestió d'usuaris
+
+- Consulta dels usuaris registrats.
+- Visualització de les dades de cada usuari.
+- Consulta de l'historial de préstecs.
+
+### Préstecs i reserves
+
+- Realització de préstecs.
+- Retorn de materials.
+- Càlcul automàtic de multes per retard.
+- Reserva de materials que implementen la interfície `Reservable`.
+- Control d'errors quan un material no està disponible o no es pot reservar.
+
+### Estadístiques i auditoria
+
+- Nombre total de materials.
+- Materials disponibles, prestats i reservats.
+- Recompte de materials per tipus.
+- Multes pendents.
+- Registre de les accions realitzades sobre els materials.
 
 ## Estructura del projecte
 
 ```text
-biblioteca/
+Tasca1/
 │
 ├── src/
-│   ├── Data/           # Generació de dades inicials
-│   ├── Exceptions/     # Excepcions personalitzades
-│   ├── Interfaces/     # Interfícies
-│   ├── Models/         # Classes principals
-│   └── Traits/         # Traits
+│   ├── Data/
+│   │   └── DataGenerator.php
+│   │
+│   ├── Exceptions/
+│   │   ├── EmailInvalidException.php
+│   │   ├── MaterialNoDisponibleException.php
+│   │   ├── MaterialNoPrestatException.php
+│   │   ├── MaterialNoTrobatException.php
+│   │   └── UsuariNoTrobatException.php
+│   │
+│   ├── Interfaces/
+│   │   └── Reservable.php
+│   │
+│   ├── Models/
+│   │   ├── Biblioteca.php
+│   │   ├── DVD.php
+│   │   ├── Llibre.php
+│   │   ├── Material.php
+│   │   ├── Prestec.php
+│   │   ├── Revista.php
+│   │   └── Usuari.php
+│   │
+│   └── Traits/
+│       └── Auditoria.php
 │
-├── views/              # Pàgines de l'aplicació
-├── vendor/             # Dependències de Composer
-├── composer.json       # Configuració de Composer
-├── index.php           # Punt d'entrada i encaminador
-└── README.md           # Documentació
+├── views/
+│   ├── auditoria.php
+│   ├── demo_autoload.php
+│   ├── demo_exceptions.php
+│   ├── demo_magic.php
+│   ├── demo_serialization.php
+│   ├── estadistiques.php
+│   ├── inici.php
+│   ├── material.php
+│   ├── materials.php
+│   ├── prestecs.php
+│   ├── reserves.php
+│   ├── usuari.php
+│   ├── usuaris.php
+│   └── comu.php
+│
+├── index.php
+├── composer.json
+├── composer.lock
+├── .gitignore
+└── README.md
 ```
 
-## Tecnologies i conceptes utilitzats
-
-- PHP 8 i programació orientada a objectes.
-- Herència i classes abstractes.
-- Interfícies i traits.
-- Encapsulació i polimorfisme.
-- Excepcions personalitzades.
-- Mètodes màgics de PHP.
-- Serialització d'objectes.
-- Autoload amb Composer i estàndard PSR-4.
-- Sessions PHP per conservar les dades durant la navegació.
-
-## Dades de prova
-
-El projecte incorpora un generador de dades inicials amb diferents materials, usuaris, préstecs i reserves per facilitar les proves de l'aplicació.
-
-Les dades es conserven mitjançant sessions PHP. Es poden reiniciar utilitzant l'opció corresponent de l'aplicació.
+La carpeta `vendor/` es genera automàticament amb `composer install` i no s
