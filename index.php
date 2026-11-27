@@ -64,7 +64,8 @@ try {
         $page = "reserves";
     }
 
-    $vistes = [
+    // Router: selecciona la vista segons la pàgina sol·licitada.
+    $fitxer = match ($page) {
         "inici" => "inici.php",
         "materials" => "materials.php",
         "material" => "material.php",
@@ -77,10 +78,9 @@ try {
         "demo_magic" => "demo_magic.php",
         "demo_serialization" => "demo_serialization.php",
         "demo_exceptions" => "demo_exceptions.php",
-        "demo_autoload" => "demo_autoload.php"
-    ];
-
-    $fitxer = $vistes[$page] ?? "404.php";
+        "demo_autoload" => "demo_autoload.php",
+        default => "404.php"
+    };
 
     require __DIR__ . "/views/" . $fitxer;
 
